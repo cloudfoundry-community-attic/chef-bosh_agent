@@ -8,4 +8,4 @@ license "MIT"
 
 depends "apt" # ubuntu only
 
-supports "ubuntu"', ">= 10.04"
+supports "ubuntu", ">= 10.04"
