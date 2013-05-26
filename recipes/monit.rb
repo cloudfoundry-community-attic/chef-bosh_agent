@@ -1,4 +1,5 @@
-bosh_dir = "/var/vcap/bosh"
+bosh_app_dir = "/var/vcap"
+bosh_dir = "#{bosh_app_dir}/bosh"
 bosh_src_dir = File.join(bosh_dir, "src")
 
 monit_basename = "monit-5.2.4"
@@ -32,4 +33,34 @@ make -j4 && make install
   BASH
   action :run
   not_if { ::File.exists?(File.join(bosh_dir, "bin/monit")) }
+end
+
+directory "#{bosh_dir}/etc" do
+  owner "root"
+  group "root"
+  mode "0755"
+  recursive true
+  action :create
+end
+
+cookbook_file "#{bosh_dir}/etc/monitrc" do
+  source "monit/monitrc"
+  owner "root"
+  group "root"
+  mode "0700"
+end
+
+directory "#{bosh_app_dir}/monit" do
+  owner "root"
+  group "root"
+  mode "0755"
+  recursive true
+  action :create
+end
+
+cookbook_file "#{bosh_app_dir}/monit/empty.monitrc" do
+  source "monit/empty.monitrc"
+  owner "root"
+  group "root"
+  mode "0644"
 end
