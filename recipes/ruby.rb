@@ -36,4 +36,5 @@ make -j4 && make install
 end
 
 # get rubygems tgz (unless gem version correct)
-# install rubygems
+# TODO install rubygems
+# TODO install bundler
