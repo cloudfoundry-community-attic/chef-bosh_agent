@@ -6,4 +6,6 @@ maintainer "Dr Nic Williams"
 maintainer_email "drnicwilliams@gmail.com"
 license "MIT"
 
-depends "apt"
+depends "apt" # ubuntu only
+
+supports "ubuntu"', ">= 10.04"
