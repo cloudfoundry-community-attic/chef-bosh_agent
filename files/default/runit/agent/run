@@ -4,4 +4,4 @@ set -e
 
 export PATH=/var/vcap/bosh/bin:$PATH
 exec 2>&1
-exec /var/vcap/bosh/bin/bosh_agent -c -I $(cat /etc/infrastructure) -n https://vcap:vcap@0.0.0.0:6969
+exec /var/vcap/bosh/bin/bosh_agent -c -I $(cat /etc/infrastructure)

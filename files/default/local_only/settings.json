@@ -9,7 +9,7 @@
     "disks": {
         "persistent": {}
     },
-    "mbus": "https://vcap:vcap@localhost:6969",
+    "mbus": "https://vcap:vcap@0.0.0.0:6969",
     "networks": {},
     "ntp": []
 }
