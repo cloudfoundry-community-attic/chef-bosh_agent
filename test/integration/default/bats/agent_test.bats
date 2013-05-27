@@ -7,8 +7,12 @@ load setup_path
   [ "${lines[0]}" = "/var/vcap/bosh/bin/bosh_agent" ]
 }
 
-@test "/etc/sv/agent links to /etc/service/agent" {
-  [ "$(readlink -nf /etc/sv/agent)" -eq "/etc/service/agent" ]
+@test "/etc/service/agent links to /etc/sv/agent" {
+  [ "$(readlink -nf /etc/service/agent)" == "/etc/sv/agent" ]
+}
+
+@test "/etc/service/agent/run exists to run the service via runit" {
+  [ -x /etc/service/agent/run ]
 }
 
 

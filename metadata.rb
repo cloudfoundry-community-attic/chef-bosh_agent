@@ -6,6 +6,8 @@ maintainer "Dr Nic Williams"
 maintainer_email "drnicwilliams@gmail.com"
 license "MIT"
 
+provides "bosh_agent::configure" # late-binding of agent to infrastructure & platform
+
 depends "apt" # ubuntu only
 
 supports "ubuntu", ">= 10.04"
