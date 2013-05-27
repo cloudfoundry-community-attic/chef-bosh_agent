@@ -27,5 +27,10 @@ link "/etc/service/agent" do
   to "/etc/sv/agent"
 end
 
-# /var/vcap/bosh/state.yml
+cookbook_file "#{node.bosh_dir}/state.yml" do
+  source "emptystate.yml"
+  mode "0644"
+  action :create_if_missing
+end
+
 # log rotation
