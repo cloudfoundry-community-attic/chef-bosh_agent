@@ -20,8 +20,10 @@ execute "add #{node.bosh_user.username} user to groups" do
   action :run
 end
 
-execute "add chef user to #{node.bosh_user.username}" do
-  command "usermod -a -G #{node.bosh_user.username} $(whoami)"
+
+execute "add vagrant user to #{node.bosh_user.username}" do
+  command "usermod -a -G #{node.bosh_user.username} vagrant"
   user "root"
   action :run
+  only_if { ::File.directory?("/home/vagrant") }
 end
