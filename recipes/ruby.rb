@@ -1,29 +1,21 @@
-bosh_dir = "/var/vcap/bosh"
-bosh_src_dir = File.join(bosh_dir, "src")
-
-ruby_basename = "ruby-1.9.3-p429"
-ruby_archive = "#{ruby_basename}.tar.gz"
-ruby_flavor = "1.9"
-ruby_md5 = "993c72f7f805a9eb453f90b0b7fe0d2b"
-
-directory bosh_src_dir do
+directory node.bosh_src_dir do
   mode "0755"
   recursive true
   action :create
 end
 
 # get ruby source tgz (unless correct ruby installed)
-remote_file "#{bosh_dir}/src/#{ruby_archive}" do
-  source "http://ftp.ruby-lang.org/pub/ruby/#{ruby_flavor}/#{ruby_archive}"
-  checksum ruby_md5
+remote_file "#{node.bosh_src_dir}/#{node.bosh_agent.ruby_archive}" do
+  source node.bosh_agent.ruby_url
+  checksum node.bosh_agent.ruby_md5
   action :create_if_missing
 end
 
 execute "install ruby" do
   command <<-BASH
-bosh_dir='#{bosh_dir}'
-ruby_basename='#{ruby_basename}'
-ruby_archive='#{ruby_archive}'
+bosh_dir='#{node.bosh_dir}'
+ruby_basename='#{node.bosh_agent.ruby_basename}'
+ruby_archive='#{node.bosh_agent.ruby_archive}'
 
 cd $bosh_dir/src
 tar zxvf $ruby_archive
@@ -32,7 +24,7 @@ cd $ruby_basename
 make -j4 && make install
   BASH
   action :run
-  not_if { ::File.exists?(File.join(bosh_dir, "bin/ruby")) }
+  not_if { ::File.exists?(File.join(node.bosh_bin_dir, "ruby")) }
 end
 
 # get rubygems tgz (unless gem version correct)
