@@ -10,6 +10,6 @@
         "persistent": {}
     },
     "mbus": "https://vcap:vcap@localhost:6969",
-    "networks": [],
+    "networks": {},
     "ntp": []
 }
