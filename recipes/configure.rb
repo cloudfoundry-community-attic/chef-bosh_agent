@@ -1,4 +1,4 @@
-include_recipe "bosh_agent::local_only"
+include_recipe "bosh_agent::configure_local"
 
 # /etc/infrastructure required for /etc/sv/agent/run to pass to bosh_agent
 template "/etc/infrastructure" do

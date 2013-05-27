@@ -1,36 +1,13 @@
-package "runit"
+include_recipe "bosh_agent::ubuntu"
+include_recipe "bosh_agent::users"
 
-execute "install bosh_agent rubygem" do
-  command "gem install bosh_agent --conservative --no-rdoc --no-ri -r --pre --source #{node.bosh_agent.gem_src_url}"
-  environment({
-    "PATH" => "#{node.bosh_bin_dir}:#{ENV['PATH']}"
-  })
-  action :run
-end
+include_recipe "bosh_agent::ruby"
+include_recipe "bosh_agent::monit"
 
-directory "/etc/sv/agent/log" do
-  recursive true
-  action :create
-end
+include_recipe "bosh_agent::sysstat"
+include_recipe "bosh_agent::sysctl"
+include_recipe "bosh_agent::ntpdate"
+include_recipe "bosh_agent::sudoers"
 
-cookbook_file "/etc/sv/agent/run" do
-  source "runit/agent/run"
-  mode "0755"
-end
+include_recipe "bosh_agent::install_agent"
 
-cookbook_file "/etc/sv/agent/log/run" do
-  source "runit/agent/log/run"
-  mode "0755"
-end
-
-link "/etc/service/agent" do
-  to "/etc/sv/agent"
-end
-
-cookbook_file "#{node.bosh_dir}/state.yml" do
-  source "emptystate.yml"
-  mode "0644"
-  action :create_if_missing
-end
-
-# log rotation

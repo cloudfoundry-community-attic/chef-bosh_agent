@@ -1,4 +1,7 @@
-# Firstboot script
+# First boot
+#
+# Empties the /etc/resolv.conf
+
 cookbook_file "/etc/rc.local" do
   source "etc/rc.local"
 end
