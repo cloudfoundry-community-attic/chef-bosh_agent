@@ -1,3 +1,5 @@
+package "sysstat"
+
 cookbook_file "/etc/default/sysstat" do
   source "sysstat"
   owner "root"
