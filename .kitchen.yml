@@ -41,4 +41,6 @@ suites:
 - name: default
   run_list:
     - recipe[bosh_agent]
-  attributes: {}
+  attributes:
+    bosh_agent:
+      infrastructure: <%= ENV['AWS_ACCESS_KEY_ID'] ? "aws" : "vsphere" %>

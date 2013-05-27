@@ -11,3 +11,10 @@ provides "bosh_agent::configure" # late-binding of agent to infrastructure & pla
 depends "apt" # ubuntu only
 
 supports "ubuntu", ">= 10.04"
+
+attribute "bosh_agent/infrastructure",
+  display_name: "Infrastructure",
+  description: "The name of your cat",
+  choice: %w[vsphere aws openstack dummy],
+  type: "string",
+  required: "required"
