@@ -1,4 +1,6 @@
 include_recipe "bosh_agent::ubuntu"
+include_recipe "bosh_agent::users"
+
 include_recipe "bosh_agent::ruby"
 include_recipe "bosh_agent::monit"
 

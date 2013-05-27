@@ -3,6 +3,9 @@ default[:bosh_dir] = File.join(node.bosh_app_dir, "bosh")
 default[:bosh_src_dir] = File.join(node.bosh_dir, "src")
 default[:bosh_bin_dir] = File.join(node.bosh_dir, "bin")
 
+default[:bosh_user][:username] = "vcap" # don't change
+default[:bosh_user][:password] = "c1oudc0w"
+
 default[:bosh_agent][:ruby_basename] = "ruby-1.9.3-p429"
 default[:bosh_agent][:ruby_archive] = "#{node.bosh_agent.ruby_basename}.tar.gz"
 default[:bosh_agent][:ruby_flavor] = "1.9"
