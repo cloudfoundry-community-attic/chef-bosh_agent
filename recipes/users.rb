@@ -8,3 +8,20 @@ user node.bosh_user.username do
   supports({ manage_home: true })
 end
 
+node.bosh_user.groups.split(",").each do |grp|
+  group grp do
+    members ['root']
+  end
+end
+
+execute "add #{node.bosh_user.username} user to groups" do
+  command "usermod -a -G #{node.bosh_user.groups} #{node.bosh_user.username}"
+  user "root"
+  action :run
+end
+
+execute "add chef user to #{node.bosh_user.username}" do
+  command "usermod -a -G #{node.bosh_user.username} $(whoami)"
+  user "root"
+  action :run
+end
