@@ -10,3 +10,9 @@ template "/etc/infrastructure" do
     system_parameters_infrastructure: node.bosh_agent.infrastructure
   })
 end
+
+execute "restart bosh_agent" do
+  command "killall bosh_agent"
+  user "root"
+  action :run
+end
