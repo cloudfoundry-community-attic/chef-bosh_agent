@@ -29,4 +29,11 @@ end
 
 # get rubygems tgz (unless gem version correct)
 # TODO install rubygems
-# TODO install bundler
+
+execute "install bundler rubygem" do
+  command "gem install bundler --conservative --no-rdoc --no-ri -r"
+  environment({
+    "PATH" => "#{node.bosh_bin_dir}:#{ENV['PATH']}"
+  })
+  action :run
+end
