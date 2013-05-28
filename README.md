@@ -58,6 +58,8 @@ You can interact with the agent using the `agent_client` library:
 
 ```
 
+These gems are also installed by adding the `bosh_agent::agent_client` recipe to your run list.
+
 ## Release
 
 There is a helpful rake task to share new cookbook versions.
