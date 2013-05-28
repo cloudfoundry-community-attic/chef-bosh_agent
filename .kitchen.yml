@@ -40,7 +40,9 @@ platforms:
 suites:
 - name: default
   run_list:
-    - recipe[bosh_agent]
+    - recipe[bosh_agent::install]
+    - recipe[bosh_agent::configure]
+    - recipe[bosh_agent::agent_client]
   attributes:
     bosh_agent:
       infrastructure: <%= ENV['AWS_ACCESS_KEY_ID'] ? "aws" : "vsphere" %>
