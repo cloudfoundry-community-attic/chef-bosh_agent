@@ -40,6 +40,22 @@ You can interact with the agent using the `agent_client` library:
 > api = Bosh::Agent::Client.create('https://localhost:6969', "user" => "vcap", "password" => "vcap")
 > api.ping
 "pong"
+> api.state
+=> {"deployment"=>"",
+ "job"=>"",
+ "index"=>"",
+ "networks"=>{},
+ "resource_pool"=>{},
+ "packages"=>{},
+ "persistent_disk"=>{},
+ "configuration_hash"=>{},
+ "properties"=>{},
+ "agent_id"=>"micro",
+ "vm"=>nil,
+ "job_state"=>"running",
+ "bosh_protocol"=>"1",
+ "ntp"=>{"message"=>"file missing"}}
+
 ```
 
 ## Release
