@@ -1,13 +1,13 @@
-include_recipe "bosh_agent::ubuntu"
-include_recipe "bosh_agent::users"
+include_recipe "bosh_agent::install_ubuntu"
+include_recipe "bosh_agent::install_users"
 
-include_recipe "bosh_agent::ruby"
-include_recipe "bosh_agent::monit"
+include_recipe "bosh_agent::install_ruby"
+include_recipe "bosh_agent::install_monit"
 
-include_recipe "bosh_agent::sysstat"
-include_recipe "bosh_agent::sysctl"
-include_recipe "bosh_agent::ntpdate"
-include_recipe "bosh_agent::sudoers"
+include_recipe "bosh_agent::install_sysstat"
+include_recipe "bosh_agent::install_sysctl"
+include_recipe "bosh_agent::install_ntpdate"
+include_recipe "bosh_agent::install_sudoers"
 
 include_recipe "bosh_agent::install_agent"
 
