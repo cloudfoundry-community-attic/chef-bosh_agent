@@ -1,5 +1,5 @@
 execute "restart bosh_agent" do
-  command "killall bosh_agent || echo 'No bosh agent to restart'"
+  command "sudo -S sv restart agent"
   user "root"
   action :run
 end
