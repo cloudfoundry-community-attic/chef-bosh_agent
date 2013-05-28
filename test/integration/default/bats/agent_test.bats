@@ -21,3 +21,8 @@ load setup_path
 }
 
 # TODO - hourly logrotate
+
+@test "agent responds to ping/pong" {
+  run ruby -S agent_client ping
+  [ "${lines[0]}" = "pong" ]
+}
