@@ -22,7 +22,7 @@ execute "set root password" do
   action :run
 end
 
-execute "set node.bosh_user.username password" do
+execute "set #{node.bosh_user.username} password" do
   command "echo \"#{node.bosh_user.username}:#{node.bosh_user.password}\" | chpasswd"
   action :run
 end
