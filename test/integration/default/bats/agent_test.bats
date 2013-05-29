@@ -20,7 +20,9 @@ load setup_path
   [ -f /var/vcap/bosh/state.yml ]
 }
 
-# TODO - hourly logrotate
+@test "/etc/cron.hourly/logrotate exists" {
+  [ -f /etc/cron.hourly/logrotate ]
+}
 
 @test "agent responds to ping/pong" {
   run ruby -S agent_client ping

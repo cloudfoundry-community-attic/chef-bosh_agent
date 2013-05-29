@@ -10,4 +10,5 @@ include_recipe "bosh_agent::install_ntpdate"
 include_recipe "bosh_agent::install_sudoers"
 
 include_recipe "bosh_agent::install_agent"
+include_recipe "bosh_agent::install_logrotate"
 
