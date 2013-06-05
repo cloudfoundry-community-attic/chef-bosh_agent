@@ -20,11 +20,14 @@ monit_archive='#{node.bosh_agent.monit_archive}'
 cd $bosh_dir/src
 tar zxvf $monit_archive
 cd $monit_basename
-./configure --prefix=$bosh_dir --without-ssl
+./configure --prefix=$bosh_dir --without-ssl --without-pam
 make -j4 && make install
   BASH
   action :run
-  not_if { ::File.exists?(File.join(node.bosh_bin_dir, "monit")) }
+  not_if do
+    ::File.exists?(File.join(node.bosh_bin_dir, "monit")) &&
+    `#{File.join(node.bosh_bin_dir, "monit")} -V` =~ /This is Monit version #{node.bosh_agent.monit_version}/
+  end
 end
 
 directory "#{node.bosh_dir}/etc" do
