@@ -9,7 +9,7 @@ license "MIT"
 provides "bosh_agent::install"
 provides "bosh_agent::configure" # late-binding of agent to infrastructure & platform
 provides "bosh_agent::harden"
-provides "bosh_agent::agent_client"
+provides "bosh_agent::client"
 
 depends "apt" # ubuntu only
 

@@ -13,3 +13,13 @@ execute "install bosh agent_client rubygem" do
   })
   action :run
 end
+
+execute "install bosh blobstore_client rubygem" do
+  command "gem install blobstore_client --conservative --no-rdoc --no-ri -r --pre --source #{node.bosh_agent.gem_src_url}"
+  environment({
+    "PATH" => "#{node.bosh_bin_dir}:#{ENV['PATH']}"
+  })
+  action :run
+end
+
+
